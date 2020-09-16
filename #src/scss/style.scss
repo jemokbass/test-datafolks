@@ -1,0 +1,231 @@
+//MAIN_STYLE-----------------------------------
+@import "fonts";
+@import "vars";
+@import "normalize";
+
+//MAIN FONT
+body,
+input,
+button,
+textarea,
+a {
+  font-family: $fontFirst;
+  color: $ColorMain;
+  background: transparent;
+}
+
+//ADAPTIVE IMAGES
+.--ib {
+  position: relative;
+  img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+//CUSTOM ELEMENT
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  bottom: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  //AND
+  appearance: none;
+}
+body {
+  &.block {
+    overflow: hidden;
+  }
+}
+//Контейнеры
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+.--container {
+  max-width: $maxWidth + $widthPadding;
+  margin: 0 auto;
+  padding: 0px $widthPadding;
+}
+a {
+  &:focus {
+    outline: 2px solid #4c89c1;
+  }
+}
+//ALL_STYLE-----------------------------------
+.btn {
+  margin: 0 auto;
+  &__element {
+    padding: 15px 0px;
+    display: inline-block;
+    width: 100%;
+    color: #344258;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.45px;
+    position: relative;
+    transition: all 0.45s ease 0s;
+    z-index: 1;
+    @media (max-width: 769px) {
+      transition: all 0.2s ease 0s;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 0%;
+      top: 50%;
+      left: 0;
+      background: #4c6781;
+      transition: all 0.45s ease 0s;
+      z-index: -1;
+      @media (max-width: 769px) {
+        transition: all 0.2s ease 0s;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 0%;
+      bottom: 50%;
+      right: 0;
+      background: #4c6781;
+      transition: all 0.6s ease 0s;
+      z-index: -1;
+      @media (max-width: 769px) {
+        transition: all 0.2s ease 0s;
+      }
+    }
+    &:hover {
+      color: #000;
+      background: transparent;
+      &::before {
+        height: 50%;
+      }
+      &::after {
+        height: 50%;
+      }
+    }
+  }
+}
+.invalid {
+  white-space: nowrap;
+  position: absolute;
+  width: min-content;
+  height: min-content;
+  padding: 10px 20px;
+  border-bottom: 1px solid red;
+  color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: 4s 1 linear opacity;
+  opacity: 0;
+}
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.modal {
+  background: rgba($color: #000000, $alpha: 0.7);
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -50;
+  transition: all 0.9s ease 0s;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 50;
+  }
+  &__inner {
+    position: absolute;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 30px;
+    top: 50%;
+    left: 250%;
+    transform: translate(-50%, -50%);
+    z-index: 51;
+    border-radius: 3px;
+    width: 100%;
+    transition: all 0.7s cubic-bezier(0.31, 0.3, 0.83, 0.67) 0s;
+    &.active {
+      left: 50%;
+    }
+  }
+  &__close-btn {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    a {
+      font-size: 25px;
+      color: #3d95e3;
+    }
+  }
+}
+.content-modal {
+  @media (min-width: 604px) {
+    display: flex;
+  }
+  &__img {
+    flex: 0 0 60%;
+    padding: 0px 0px 50% 0px;
+    @media (max-width: 604px) {
+      margin: 30px 0px;
+    }
+    @media (max-width: 480px) {
+      margin: 18px 0px;
+    }
+  }
+
+  &__info {
+    flex: 0 0 40%;
+    padding: 0px 30px;
+    @media (min-width: 604px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__info-title {
+    @include adaptiv-font(32, 24);
+    font-weight: 700;
+    margin: 0px 0px 30px 0px;
+    text-align: center;
+    letter-spacing: -0.95px;
+    @media (max-width: 480px) {
+      margin: 0px 0px 20px 0px;
+    }
+  }
+
+  &__info-text {
+    font-family: "MyriadPro-Regular";
+    @include adaptiv-font(22, 16);
+    line-height: 1.2em;
+  }
+}
+
+@import "header";
+@import "body";
+@import "footer";
